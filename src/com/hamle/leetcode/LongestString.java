@@ -1,5 +1,8 @@
 package com.hamle.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 截取给定字符转中最长不重复的子串
  * @author Hamle
@@ -82,6 +85,29 @@ public class LongestString {
         }
         System.out.println(maxString);
         return maxLength;
+    }
+
+    /**
+     * 时间复杂度O(n)
+     * 利用set集合依次寻找每个位置的最大不重复长度
+     * @param s 目标
+     * @return 结果
+     */
+    public int lengthOfLongestSubstringBest(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            // try to extend the range [i, j]
+            if (!set.contains(s.charAt(j))){
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            }
+            else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return ans;
     }
 
 }
