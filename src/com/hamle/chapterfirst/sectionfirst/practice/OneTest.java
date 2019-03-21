@@ -1,7 +1,5 @@
 package com.hamle.chapterfirst.sectionfirst.practice;
 
-import java.util.Arrays;
-
 /**
  * @author Hamle
  * @date 2019/3/16.
@@ -9,9 +7,7 @@ import java.util.Arrays;
 public class OneTest {
 
     public static void main(String[] args) {
-        int[] a = {0, 1, 2, 3, 0, 0};
-        int[] b = histogram(a, 5);
-        System.out.println(Arrays.toString(b));
+        System.out.println(mystery(-1, 2));
     }
 
     /**
@@ -186,5 +182,47 @@ public class OneTest {
         return b;
     }
 
+    /**
+     * 猜猜结果会是什么
+     * @param n
+     * @return
+     */
+    public static String exR1(int n) {
+        if (n <= 0) {
+            return "";
+        }
+        return exR1(n - 3) + n + exR1(n - 2) + n;
+    }
 
+    /**
+     * 乘法
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int mystery(int a, int b) {
+        if (b == 0) {
+            return 0;
+        }
+        if (b % Constants.TWO_I == 0) {
+            return mystery(a + a, b / 2);
+        }
+        return mystery(a + a, b / 2) + a;
+    }
+
+    /**
+     * 待定
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int mystery1(int a, int b) {
+        if (b == 0) {
+            return 1;
+        }
+        if (b % Constants.TWO_I == 0) {
+            return mystery(a * a, b / 2);
+        }
+        return mystery(a * a, b / 2) + a;
+    }
 }
