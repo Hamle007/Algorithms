@@ -1,13 +1,21 @@
 package com.hamle.chapterfirst.sectionfirst.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Hamle
  * @date 2019/3/16.
  */
 public class OneTest {
 
+    // NewF方法中用于缓存递归数据
+    private static List<Long> list = new ArrayList<>(15);
+
     public static void main(String[] args) {
-        System.out.println(mystery(-1, 2));
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i + " " + NewF(i));
+        }
     }
 
     /**
@@ -223,6 +231,46 @@ public class OneTest {
         if (b % Constants.TWO_I == 0) {
             return mystery(a * a, b / 2);
         }
-        return mystery(a * a, b / 2) + a;
+        return mystery( a * a, b / 2) + a;
     }
+
+    /**
+     * 打印
+     * @param
+     * @return
+     */
+    public static long F(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        return F(n - 1) + F(n - 2);
+    }
+
+    /**
+     * F方法实现
+     * @param n
+     * @return
+     */
+    public static long NewF(int n) {
+        if (list.size() < Constants.TWO_I) {
+            list.add(0L);
+            list.add(1L);
+        }
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        if (n == list.size()) {
+            list.add(list.get(n-1) + list.get(n - 2));
+            return list.get(n);
+        }
+        return NewF(n - 1);
+    }
+
+
 }
