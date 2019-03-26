@@ -13,9 +13,8 @@ public class OneTest {
     private static List<Long> list = new ArrayList<>(15);
 
     public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(i + " " + NewF(i));
-        }
+        System.out.println(binomial(5, 5, 0.25));
+        System.out.println(" " + count);
     }
 
     /**
@@ -259,11 +258,8 @@ public class OneTest {
             list.add(0L);
             list.add(1L);
         }
-        if (n == 0) {
-            return 0;
-        }
-        if (n == 1) {
-            return 1;
+        if (n < Constants.TWO_I) {
+            return list.get(n);
         }
         if (n == list.size()) {
             list.add(list.get(n-1) + list.get(n - 2));
@@ -271,6 +267,25 @@ public class OneTest {
         }
         return NewF(n - 1);
     }
+    private static int count = 0;
 
+    /**
+     * 二项分布
+     * 递归了多少次
+     * @param n
+     * @param k
+     * @param p
+     * @return
+     */
+    public static double binomial(int n, int k, double p) {
+        count++;
+        if (n == 0 && k == 0) {
+            return 1.0;
+        }
+        if (n < 0 || k < 0) {
+            return 0.0;
+        }
+        return (1.0 - p) * binomial(n - 1, k, p) + p * binomial(n - 1, k - 1, p);
+    }
 
 }
