@@ -1,4 +1,4 @@
-package com.hamle.chapterfirst.sectionfirst.practice;
+package com.hamle.chapter.first.section.first.practice;
 
 /**
  * 常量

@@ -1,4 +1,4 @@
-package com.hamle.chapterfirst.sectionfirst;
+package com.hamle.chapter.first.section.first;
 
 /**
  * 二分法查找实现
